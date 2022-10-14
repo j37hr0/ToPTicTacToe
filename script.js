@@ -37,11 +37,19 @@ const gameBoard = (function() {
                 }
         }
     },
-    // play: function() {
-    //     newID = this.id;
-    //     gameState[newID] = activePlayer.marker;
-    //     gameBoard.display();
-    // }
+    play: function(e) {
+        if (game.activePlayer === game.playerOne){
+            gameState[e] = 1;
+            gameBoard.display(gameState);
+            console.log(e)
+
+        }
+        else if (game.activePlayer === game.playerTwo) {
+            gameState[e] = 2;
+            gameBoard.display(gameState);
+
+        }
+    }
 };
 })();
 
@@ -65,16 +73,7 @@ gameBoard.display(gameState)
 // add event listeners
 for (let i = 0; i < 9; i++){
     let sqauare = document.getElementById(`${i}`);
-    sqauare.onclick = function () {
-        if (game.activePlayer === game.playerOne){
-            gameState[i] = 1;
-            gameBoard.display(gameState);
-        }
-        else if (game.activePlayer === game.playerTwo) {
-            gameState[i] = 2;
-            gameBoard.display(gameState);
-        }
-    }
+    sqauare.addEventListener = ('click', gameBoard.play())
 }
 
 
