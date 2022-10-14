@@ -1,0 +1,46 @@
+#header {
+    height: 200px;
+    background-color: grey;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+#gameboard {
+    display: grid;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    height: auto;
+    place-self: center;
+}
+
+#footer {
+    height: 200px;
+    background-color: grey;
+}
+
+.buttons {
+    margin: 0;
+}
+
+.buttons:hover {
+    background-color: grey;
+}
+
+ .innercell {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    /* border-bottom: 1px solid black;
+    border-top: 1px solid black; */
+
+}
+
+.middlecell {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
