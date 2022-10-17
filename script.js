@@ -3,7 +3,7 @@ const gameboard = document.getElementById("gameboard")
 
 
 //globals
-var gameState = [0,0,0,0,0,0,0,0,0];
+let gameState = [0,0,0,1,2,2,1,2,0];
 const winConditions = [
     [0,1,2],
     [3,4,5],
@@ -24,30 +24,34 @@ const createPlayer = (name, marker) => {
 //gameboard module
 const gameBoard = (function() {
     return {
-        display: function(state) {
+        display: function(gameState) 
+        {
             for (let i = 0; i < 9; i++){
-                let block = document.getElementById(state[i]);
-                if (state[i] === 1){
-                    block.innerHTML = "X"
+                let block = document.getElementById(`${gameState[i]}`);
+                if (gameState[i] == 1){
+                    block.innerText = "X";
+                    console.log(block);
                 }
-                else if (state[i] === 2){
-                    block.innerHTML = "O";
+                else if (gameState[i] == 2){
+                    block.innerText = "O";
                 }
-                else if (state[i] === 0){
+                else if (gameState[i] == 0){
+                    block.innerText = "";
                 }
         }
     },
-    play: function(e) {
+    play: function(event) {
         if (game.activePlayer === game.playerOne){
-            gameState[e] = 1;
+            let index = event.target.dataset.array;
+            gameState[index] = 1;
             gameBoard.display(gameState);
-            console.log(e)
-
+            console.log(gameState[index])
         }
         else if (game.activePlayer === game.playerTwo) {
-            gameState[e] = 2;
+            let index = event.target.dataset.array;
+            gameState[index] = 2;
             gameBoard.display(gameState);
-
+            console.log(gameState[index])
         }
     }
 };
@@ -67,13 +71,15 @@ const game = () => {
 
 
 
-gameBoard.display(gameState)
+
 
 
 // add event listeners
 for (let i = 0; i < 9; i++){
     let sqauare = document.getElementById(`${i}`);
-    sqauare.addEventListener = ('click', gameBoard.play())
+    sqauare.addEventListener = ('click', gameBoard.play);
+
 }
 
 
+gameBoard.display(gameState)
