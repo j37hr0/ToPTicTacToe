@@ -17,9 +17,9 @@ const ticTacToeGame = function() {
         let box = squareArr[index];
         placeMarker(box, currentPlayer, index);
         let winner = checkIfWin();
-        console.log(winner)
-        if (winner){
+        if (winner === "X" || winner === "O" || winner === "Tie"){
             displayWinner(winner);
+            console.log(winner)
         }
         switchPlayers();
     }
@@ -34,23 +34,25 @@ const ticTacToeGame = function() {
     //checks if there is a win, run after every click
     function checkIfWin() {
         let actualWinner;
-        const winConditions = [
-            [0,1,2],
-            [3,4,5],
-            [6,7,8],
-            [0,3,6],
-            [1,4,7],
-            [2,5,8],
-            [0,4,8],
-            [6,4,2]
-        ];
-
-        winConditions.forEach(condition =>{
-            if(board[winConditions[0]] && board[condition[0]]===board[condition[1]] && board[condition[0]] === board[condition[2]]){
-            actualWinner = board[condition[0]];
+        if ((board[0] === "X" && board[1] === "X" && board[2] === "X") || (board[3] === "X" && board[4] === "X" && board[5] === "X") || (board[6] === "X" && board[7] === "" && board[8] === "X") 
+        || (board[0] === "X" && board[3] === "X" && board[6] === "X") || (board[1] === "X" && board[4] === "X" && board[7] === "X") || (board[2] === "X" && board[5] === "X" && board[8] === "X")
+        || (board[0] === "X" && board[4] === "X" && board[8] === "X") || (board[6] === "X" && board[4] === "X" && board[2] === "X")){
+            actualWinner = "X";
         }
-    })
-        return actualWinner = actualWinner? actualWinner : board.includes('')? null: 'Tie'
+        else if (board[0] === "O" && board[1] === "O" && board[2] === "O" || board[3] === "O" && board[4] === "O" && board[5] === "O" || board[6] === "O" && board[7] === "" && board[8] === "O" 
+        || board[0] === "O" && board[3] === "O" && board[6] === "O" || board[1] === "O" && board[4] === "O" && board[7] === "O" || board[2] === "O" && board[5] === "O" && board[8] === "O"
+        || board[0] === "O" && board[4] === "O" && board[8] === "O" || board[6] === "O" && board[4] === "O" && board[2] === "O")
+        {
+            actualWinner = "O";
+        }
+        else if (board[0] != "" && board[1] != "" && board[2] != "" && board[3] != "" && board[4] != "" && board[5] != "" && board[6] != "" && board[7] != "" &&
+        board[8]){
+            actualWinner = "Tie";
+        }
+        else {
+            actualWinner = "";
+        }
+        return actualWinner;
     }
     // handles switching turns and players
     function switchPlayers(){
@@ -67,7 +69,7 @@ const ticTacToeGame = function() {
     //displays winner name or tie
     function displayWinner(winner){
         if (winner === "X" || winner === "O"){
-            winnerMessage.innerText = `The winner is ${actualWinner}`;
+            winnerMessage.innerText = `The winner is ${winner}`;
             modal.style.display = "block;"
         }
         else if (winner === "Tie"){
