@@ -26,6 +26,9 @@
 
 .buttons {
     margin: 0;
+    display: grid;
+    place-content: center;
+    font-size: 40px;
 }
 
 .buttons:hover {
@@ -42,4 +45,16 @@
 .middlecell {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+#restart {
+    
+}
+
+.modal {
+
+}
+
+.modal-content {
+    
 }
